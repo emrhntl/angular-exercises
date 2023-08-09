@@ -13,6 +13,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { BoardDialogComponent } from './boards/board-dialog/board-dialog.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 
 import { ReactiveFormsModule } from '@angular/forms'
 
@@ -32,7 +33,8 @@ import { ReactiveFormsModule } from '@angular/forms'
     MatDialogModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

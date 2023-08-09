@@ -24,4 +24,9 @@ export class BoardService {
     localStorage.setItem('boards', JSON.stringify(this.boards));
   }
 
+  public deleteBoard(index: number) {
+    this.boards.splice(index);
+    localStorage.setItem('boards', JSON.stringify(this.boards));
+  }
+
 }

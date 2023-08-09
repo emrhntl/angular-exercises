@@ -2,3 +2,16 @@
 
     <button mat-raised-button (click)="openNewBoardDialog()" color="accent">Yeni Board ekle</button>
 </div>
+
+
+<div style="display: flex; justify-content: space-between; align-items: center; background-color: yellow; margin: 5px 30px; padding: 5px 10px;"
+    *ngFor="let board of boardService.boards; let i = index">
+
+    {{board.title}}
+
+    <div>
+        <button (click)="deleteBoard(i)" mat-icon-button>
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+</div>
