@@ -1,11 +1,11 @@
 <div style="display: flex;justify-content: center; margin: 30px 0px;">
 
-    <button mat-raised-button (click)="openNewBoardDialog()" color="accent">Yeni Board ekle</button>
+    <button mat-raised-button (click)="openNewBoardDialog()" color="accent">Add new board</button>
 </div>
 
 
 <div style="display: flex; justify-content: space-between; align-items: center; background-color: yellow; margin: 5px 30px; padding: 5px 10px;"
-    *ngFor="let board of boardService.boards; let i = index">
+    *ngFor="let board of boardService.boards; let i = index" [routerLink]="'/view-board/'+i">
 
     {{board.title}}
 

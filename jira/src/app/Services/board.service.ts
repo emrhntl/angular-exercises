@@ -29,4 +29,8 @@ export class BoardService {
     localStorage.setItem('boards', JSON.stringify(this.boards));
   }
 
+  public updateDataToLocaleStorage() {
+    localStorage.setItem('boards', JSON.stringify(this.boards)); 
+  }
+
 }

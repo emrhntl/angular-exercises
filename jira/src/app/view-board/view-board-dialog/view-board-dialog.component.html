@@ -1,0 +1,24 @@
+<h2>New card</h2>
+
+<mat-dialog-content>
+    <mat-form-field style="width: 100%;">
+        <mat-label>Title</mat-label>
+        <input [(ngModel)]="title" matInput type="text">
+    </mat-form-field>
+    <div *ngFor="let task of tasksLoop; let i = index">
+        <mat-form-field style="width: 90%;">
+            <mat-label>Task {{i+1}}</mat-label>
+            <input [(ngModel)]="tasks[i]" matInput type="text">
+        </mat-form-field>
+
+        <button (click)="deleteTask(i)" mat-icon-button style="width: 10%;">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button (click)="addTask()" mat-raised-button>Add new task</button>
+    <button (click)="close()" mat-raised-button color="accent">Cancel</button>
+    <button (click)="create()" mat-raised-button color="primary">Add</button>
+</mat-dialog-actions>

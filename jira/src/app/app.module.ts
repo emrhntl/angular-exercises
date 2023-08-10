@@ -14,15 +14,22 @@ import { BoardDialogComponent } from './boards/board-dialog/board-dialog.compone
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-import { ReactiveFormsModule } from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms';
+import { ViewBoardComponent } from './view-board/view-board.component';
+import { ViewBoardDialogComponent } from './view-board/view-board-dialog/view-board-dialog.component'
+
+import { FormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     BoardsComponent,
-    BoardDialogComponent
+    BoardDialogComponent,
+    ViewBoardComponent,
+    ViewBoardDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +41,9 @@ import { ReactiveFormsModule } from '@angular/forms'
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
