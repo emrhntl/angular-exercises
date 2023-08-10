@@ -1,4 +1,64 @@
-<div style="display: flex;justify-content: center; margin: 30px 0px;">
+<div class="mainContainer">
+    <div style="display: flex;justify-content: center; margin: 30px 0px;">
+        <button mat-raised-button (click)="openNewCardDialog()" color="accent">Add new card</button>
+    </div>
 
-    <button mat-raised-button (click)="openNewCardDialog()" color="accent">Add new card</button>
+    <mat-accordion>
+        <mat-expansion-panel style="min-width: 1100px; margin: 10px 0px;" hideToggle
+            *ngFor="let checkItem of boardService.boards[boardIndex].cards; let i = index">
+            <mat-expansion-panel-header>
+                <div style="display: flex; justify-content: space-between; width: 100%; padding: 8px;">
+                    <mat-panel-title>
+                        {{ checkItem.title }}
+                    </mat-panel-title>
+                    <button (click)="deleteCard(i, checkItem.title)" mat-icon-button>
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </mat-expansion-panel-header>
+
+            <div style="display: flex; flex-direction: column; align-items: flex-end; margin-top: 12px;">
+                <table mat-table [dataSource]="boardService.boards[boardIndex].cards[i].checkList"
+                    class="mat-elevation-z8">
+                    <ng-container matColumnDef="task">
+                        <th style="width: 275px; text-align: center;" mat-header-cell *matHeaderCellDef> Task </th>
+                        <td style="width: 275px; text-align: center;" mat-cell *matCellDef="let element">
+                            <app-editable-text [value]="element.task"
+                                (valueChange)="updateTask(element.task,$event,i)"></app-editable-text>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="status">
+                        <th style="width: 275px; text-align: center;" mat-header-cell *matHeaderCellDef> Status </th>
+                        <td style="width: 275px; text-align: center;" mat-cell *matCellDef="let element">
+                            <mat-checkbox class="example-margin" [(ngModel)]="element.status"
+                                color="primary"></mat-checkbox>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="delete">
+                        <th style="width: 275px; text-align: center;" mat-header-cell *matHeaderCellDef> Delete </th>
+                        <td style="width: 275px; text-align: center;" mat-cell *matCellDef="let element">
+                            <button (click)="deleteTask(i, element.task)" mat-icon-button>
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns; let rowId = index"></tr>
+                </table>
+                <div style="display: flex;">
+                    <button (click)="addNewTask(i)" mat-raised-button color="accent" style="margin: 15px 10px;">
+                        Add Task
+                    </button>
+                    <button (click)="save()" mat-raised-button color="primary" style="margin: 15px 10px;">
+                        Save
+                    </button>
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+
 </div>

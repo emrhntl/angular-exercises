@@ -1,0 +1,10 @@
+<div *ngIf="!edit" (click)="changeEdit()">
+    <p>{{ value }}</p>
+</div>
+
+<div *ngIf="edit" style="display: flex; justify-content: center; align-items: center;">
+    <input autofocus style="width: auto; max-width: 25%;" type="text" [(ngModel)]="value">
+    <button (click)="updateValue()" mat-icon-button>
+        <mat-icon>check</mat-icon>
+    </button>
+</div>

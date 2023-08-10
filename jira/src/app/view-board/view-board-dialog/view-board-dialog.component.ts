@@ -3,19 +3,19 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BoardService } from 'src/app/Services/board.service';
 
+import { Task } from 'src/app/Models/task';
+
 @Component({
   selector: 'app-view-board-dialog',
   templateUrl: './view-board-dialog.component.html',
-  styleUrls: ['./view-board-dialog.component.css']
+  styleUrls: ['./view-board-dialog.component.css']  
 })
 export class ViewBoardDialogComponent {
   title: string = "";
-  tasks: Array<String> = [""];
-  tasksLoop: Array<any> = [false];
-
+  tasks: Task[] = [{ task: '', status: false }];
+  taskCounter: number = 1;
   constructor(private dialogRef: MatDialogRef<ViewBoardDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any
     , public boardService: BoardService, private snackBar: MatSnackBar) {
-
   }
 
   deleteTask(index: number) {
@@ -23,8 +23,12 @@ export class ViewBoardDialogComponent {
   }
 
   addTask() {
-    this.tasks.push("");
-    this.tasksLoop.push(false);
+    const newTask: Task = {
+      task: '',
+      status: false
+    };
+
+    this.tasks.push(newTask);
   }
 
   close() {
@@ -33,7 +37,7 @@ export class ViewBoardDialogComponent {
 
   create() {
 
-    if (this.tasks.some((task: String) => task === "")) {
+    if (this.tasks.some((task: Task) => task.task === "")) {
       this.snackBar.open("Task can't be empty", 'OK', {
         duration: 950
       });
@@ -42,8 +46,7 @@ export class ViewBoardDialogComponent {
     this.boardService.boards[this.data.boardIndex].cards.push(
       {
         title: this.title,
-        checkList: this.tasks,
-        status: this.tasksLoop
+        checkList: this.tasks
       }
     )
     this.boardService.updateDataToLocaleStorage();

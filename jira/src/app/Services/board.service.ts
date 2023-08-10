@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import { Task } from '../Models/task';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,9 +18,10 @@ export class BoardService {
   }
 
   public createBoard(title: any) {
+    let newCards: Task[] = [];
     let newBoardObject = {
       title,
-      cards: []
+      cards: newCards
     };
     this.boards.push(newBoardObject);
     localStorage.setItem('boards', JSON.stringify(this.boards));
@@ -30,7 +33,7 @@ export class BoardService {
   }
 
   public updateDataToLocaleStorage() {
-    localStorage.setItem('boards', JSON.stringify(this.boards)); 
+    localStorage.setItem('boards', JSON.stringify(this.boards));
   }
 
 }
