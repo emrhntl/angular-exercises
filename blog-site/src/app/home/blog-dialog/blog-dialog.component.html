@@ -12,7 +12,7 @@
 
         <button (click)="close()" mat-button style="font-size: 24px;">x</button>
     </div>
-    <mat-divider></mat-divider>
+    <mat-divider class="mb-2"></mat-divider>
 
     <div *ngIf="!isUpdate" class="row">
         <div class="col-md-6 center">
@@ -24,7 +24,7 @@
         </div>
         <div style="margin: 10px 0px;">
             <h2 style="margin: 0;">Comments</h2>
-            <mat-divider ></mat-divider>
+            <mat-divider></mat-divider>
         </div>
         <div class="row commentsContainer" *ngFor="let comment of commentData">
             <div class="col-md-2">
@@ -40,6 +40,28 @@
     </div>
 
     <div *ngIf="isUpdate">
-        <!-- Güncelleme içeriği buraya gelebilir -->
+        <form [formGroup]="form" style="min-width: 350px;">
+            <div class="container">
+                <div class="row">
+                    <mat-form-field>
+                        <mat-label>Blog title</mat-label>
+                        <input matInput formControlName="title" />
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <mat-form-field>
+                        <mat-label>Blog content</mat-label>
+                        <textarea matInput formControlName="body" cols="40" rows="10"
+                            placeholder="Ex. 100 Main St">1600 Amphitheatre Pkwy</textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div>
+                <button (click)="onSubmit()" [disabled]="form.invalid" mat-raised-button
+                    color="primary">Güncelle</button>
+            </div>
+        </form>
+
     </div>
 </div>

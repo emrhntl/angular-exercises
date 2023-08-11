@@ -11,7 +11,7 @@ import { BlogDialogComponent } from './blog-dialog/blog-dialog.component';
 })
 export class HomeComponent {
 
-  blogData!: Array<Post>;
+  blogData: Array<Post> = [];
 
   page: number = 0;
   pageSize: number = 8;
@@ -22,9 +22,7 @@ export class HomeComponent {
   }
 
   ngOnInit() {
-    this.blogService.getPosts().subscribe((res) => {
-      this.blogData = res;
-    })
+    this.getBlogList();
   }
 
   openDialog(element: Post, type: boolean) {
@@ -35,7 +33,16 @@ export class HomeComponent {
       }
     });
 
+    dialogRef.afterClosed().subscribe(result => {
+      this.getBlogList();
+    })
 
+  }
+
+  getBlogList() {
+    this.blogService.getPosts().subscribe((res) => {
+      this.blogData = res;
+    })
   }
 
 }

@@ -2,7 +2,10 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CommentService } from 'src/app/services/comment.service';
 
+import { FormGroup, FormControl, Validators } from '@angular/forms'
+
 import { Comment } from 'src/app/Models/comment';
+import { BlogService } from 'src/app/services/blog.service';
 
 @Component({
   selector: 'app-blog-dialog',
@@ -15,12 +18,20 @@ export class BlogDialogComponent {
   imageUrl!: string;
   title!: string;
   body!: string;
-  commentData!: Comment[];
+  commentData: Comment[] = [];
 
-  constructor(@Inject(MAT_DIALOG_DATA) private data: any, private dialogRef: MatDialogRef<BlogDialogComponent>, private commentService: CommentService) {
+  form = new FormGroup({
+    title: new FormControl('', [Validators.required]),
+    body: new FormControl('', [Validators.required])
+  })
+
+  constructor(private blogService: BlogService, @Inject(MAT_DIALOG_DATA) private data: any, private dialogRef: MatDialogRef<BlogDialogComponent>, private commentService: CommentService) {
     this.isUpdate = data.isUpdate
     if (data.isUpdate) {
-
+      this.form.patchValue({
+        title: this.data.blog.title,
+        body: this.data.blog.body
+      })
     }
     else {
       this.imageUrl = data.blog.imageId.toString();
@@ -31,13 +42,25 @@ export class BlogDialogComponent {
 
   ngOnInit() {
     this.commentService.getComments().subscribe((res) => {
-      this.commentData = res.filter((x:{postId:number}) => x.postId === this.data.blog.id);
+      this.commentData = res.filter((x: { postId: number }) => x.postId === this.data.blog.id);
     })
   }
 
   close() {
     this.dialogRef.close();
 
+  }
+
+  onSubmit() {
+    const request = {
+      title: this.form.get("title")?.value,
+      body: this.form.get("body")?.value,
+      imageId: this.data.blog.imageId,
+      userId: this.data.blog.userId
+    }
+    this.blogService.updatePosts(this.data.blog.id, request).subscribe(res => {
+      this.dialogRef.close();
+    });
   }
 
 }
