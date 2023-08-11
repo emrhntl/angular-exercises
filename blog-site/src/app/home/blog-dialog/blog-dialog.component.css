@@ -1,0 +1,30 @@
+.mainContainer {
+    max-height: 95vh;
+    padding: 1vh;
+}
+
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.postImage {
+    width: 98%;
+    height: 98%;
+}
+.commentsContainer{
+    background-color: lightgray;
+    margin: 7px 0px;
+    padding: 8px;
+}
+.profile{
+    width: 9vh;
+    height: 9vh;
+    border-radius: 50%;
+}
+
+::ng-deep .mat-dialog-container {
+    height: auto;
+}

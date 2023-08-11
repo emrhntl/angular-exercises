@@ -1,0 +1,45 @@
+<div class="mainContainer">
+    <div style="display: flex; justify-content: space-between;">
+        <div style="display: flex;align-items: center;">
+            <h1 style="margin: 0px;">
+                <span>
+                    <b>
+                        {{isUpdate ? 'Edit Post' :'View Post'}}
+                    </b>
+                </span>
+            </h1>
+        </div>
+
+        <button (click)="close()" mat-button style="font-size: 24px;">x</button>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div *ngIf="!isUpdate" class="row">
+        <div class="col-md-6 center">
+            <img class="postImage" src="assets/images/image{{imageUrl}}.jpg" alt="">
+        </div>
+        <div class="col-md-6">
+            <h2>{{title}}</h2>
+            <p>{{body}}</p>
+        </div>
+        <div style="margin: 10px 0px;">
+            <h2 style="margin: 0;">Comments</h2>
+            <mat-divider ></mat-divider>
+        </div>
+        <div class="row commentsContainer" *ngFor="let comment of commentData">
+            <div class="col-md-2">
+                <img class="profile" src="assets/images/profile/profile{{comment.userId}}.jpg" alt="">
+            </div>
+            <div class="col-md-10">
+                <h3>
+                    {{comment.name}}
+                </h3>
+                <p>{{comment.body}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="isUpdate">
+        <!-- Güncelleme içeriği buraya gelebilir -->
+    </div>
+</div>

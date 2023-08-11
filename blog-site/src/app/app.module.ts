@@ -10,11 +10,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { BaseService } from './services/base.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BlogDialogComponent } from './home/blog-dialog/blog-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    BlogDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +27,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatCardModule,
     MatButtonModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    MatDialogModule,
+    MatDividerModule
   ],
   providers: [
     BaseService
