@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { UserService } from '../services/user.service';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 })
 export class CreateUserComponent {
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, public userService: UserService) {
 
   }
 
@@ -22,6 +23,12 @@ export class CreateUserComponent {
 
   get f(): { [key: string]: AbstractControl } {
     return this.signupForm.controls;
+  }
+
+  createAccount() {
+    this.userService.createAccount(this.signupForm.value).subscribe((res) => {
+      console.log(res);
+    })
   }
 
 }

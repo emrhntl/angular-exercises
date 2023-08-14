@@ -12,6 +12,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
+import { BaseService } from './services/base.service';
+import { HttpClientModule } from '@angular/common/http'
+
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 
 @NgModule({
   declarations: [
@@ -29,9 +33,11 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms'
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    MatSnackBarModule 
   ],
-  providers: [],
+  providers: [BaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
