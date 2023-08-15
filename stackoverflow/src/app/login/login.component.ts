@@ -32,7 +32,9 @@ export class LoginComponent {
       }
       else {
         if (res[0].password === this.loginForm.value.password) {
+          this.userService.user = res[0];
           this.router.navigateByUrl('/home');
+          localStorage.setItem('currentUser', JSON.stringify(res[0]));
         }
         else {
           this.openSnack("Password is incorrect", "ok", 950)

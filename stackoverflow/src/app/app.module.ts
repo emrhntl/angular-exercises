@@ -16,13 +16,16 @@ import { BaseService } from './services/base.service';
 import { HttpClientModule } from '@angular/common/http'
 
 import { MatSnackBarModule } from '@angular/material/snack-bar'
+import { MatCardModule } from '@angular/material/card';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     LoginComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    MatSnackBarModule 
+    MatSnackBarModule,
+    MatCardModule
   ],
   providers: [BaseService],
   bootstrap: [AppComponent]
